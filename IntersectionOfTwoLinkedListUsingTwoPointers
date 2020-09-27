@@ -1,0 +1,52 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if(headA==null||headB==null)
+            return null;
+        ListNode l1=headA;
+        ListNode l2=headB;
+        
+        while(l1!=null||l2!=null){
+            if(l1==l2){
+                return l2;
+            }
+            if(l1!=null)
+            {
+            l1=l1.next;
+            }
+            else{
+                l1=headB;
+            }
+            if(l2!=null){
+                l2=l2.next;
+            }
+            else{
+                l2=headA;
+            }
+            
+        }
+        return null;
+        
+        
+    }
+}
+
+
+
+//the solution for this problem is a nice one to explain in a channel
+//basic problem here is both the lists listA and listB got some length difference, we have to solve this lenght difference inorder to make them meet at same node.
+//we have to make sure both nodes to meet at same node,but there is no need always traverse nodeA through ListA and nodeB through ListB.
+//so when you reach the end of a list while traversing now point the nodeA to listB and vice versa.
+//if listA is less that listB ,the advantage here is listA will point to null first and nodeA is moved to point listB , by the time listB point to null and nodeB points to listA
+the nodeA which is pointing to listB covers the extra distance between the two lists.
+//whic makes both the nodes to at a same distance from the common node if present,or else same distance from the end.
